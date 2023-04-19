@@ -1,12 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="utf-8">
-        <title>MyList</title>
-        <link rel="stylesheet" href="style/css/style.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
+  <head>
+    <meta charset="utf-8" />
+    <title>MyList</title>
+    <link rel="stylesheet" href="style/css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/4ecf0d673d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-    </body>
+  <body>
+    <div class="container">
+      <main class="tasklist">
+        <nav class="sidebar tasklist__sidebar">
+          <ul class="sidebar__list">
+            <li class="sidebar__item">
+              <button class="button button--sidebar">
+                <i class="icon tasklist__icon fa-solid fa-scroll"></i>
+              </button>
+            </li>
+          </ul>
+
+          <button class="sidebar__item" id="add-list">
+            <i class="icon fa-solid fa-plus"></i>
+          </button>
+        </nav>
+
+        <div class="tasklist__list">
+          <div class="tasklist__header">
+            <input type="text" class="input input--text tasklist__name" />
+
+            <button class="button tasklist__button">
+              <i class="icon icon--more fa-solid fa-ellipsis-vertical"></i>
+            </button>
+          </div>
+
+          <div class="tasklist__to-do">
+            <div class="tasklist__status">
+              <h2 class="title title--2 tasklist__title">To do</h2>
+              <i class="icon fa-solid fa-plus"></i>
+            </div>
+
+            <ul class="tasklist__tasks">
+              <li class="task">
+                <div class="task__check">
+                  <input type="checkbox" class="input input--checkbox" />
+                </div>
+
+                <input type="text" class="input input--text task__name" />
+
+                <button class="button button--task">
+                  <i class="icon icon--remove fa-solid fa-trash"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="tasklist__divider"></div>
+
+          <div class="tasklist__finished">
+            <div class="tasklist__status">
+              <h2 class="title title--2 tasklist__title">Finished</h2>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>
