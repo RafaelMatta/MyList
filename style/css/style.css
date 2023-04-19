@@ -7,3 +7,56 @@
 
 html {
   font-size: 62.5%; }
+
+body {
+  background-color: #0d1224;
+  height: 100svh; }
+
+.container {
+  margin: 0 auto;
+  width: 100rem;
+  height: 100%;
+  display: flex;
+  align-items: center; }
+
+.button,
+.button::after,
+.button::before {
+  border: none;
+  background-color: transparent;
+  cursor: pointer; }
+
+.sidebar {
+  background-color: #fff;
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-right: 5px solid #ffd339;
+  border-radius: 7px 0 0 7px; }
+  .sidebar__list {
+    display: flex;
+    flex-direction: column;
+    gap: inherit;
+    overflow: scroll;
+    list-style: none; }
+    .sidebar__list::-webkit-scrollbar {
+      display: none; }
+  .sidebar__button {
+    padding: 1.5rem 1.5rem; }
+    .sidebar__button:hover {
+      background-color: #ffd339; }
+    .sidebar__button:active {
+      background-color: #d9d9d9; }
+  .sidebar__icon {
+    font-size: 2rem; }
+
+.tasklist {
+  max-height: 55rem;
+  height: 100%;
+  width: 100%;
+  display: flex; }
+  .tasklist__list {
+    width: 100%;
+    background-color: #efefef;
+    border-radius: 0 7px 7px 0; }

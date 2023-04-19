@@ -1,0 +1,15 @@
+.tasklist {
+  max-height: 55rem;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+
+  &__list {
+    width: 100%;
+
+    background-color: $color-light-gray--1;
+
+    border-radius: 0 7px 7px 0;
+  }
+}
