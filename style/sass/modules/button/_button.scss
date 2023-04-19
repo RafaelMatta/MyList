@@ -1,7 +1,13 @@
-.button,
-.button::after,
-.button::before {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
+.button {
+  &,
+  &::after,
+  &::before {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &--more {
+    width: 2rem;
+  }
 }

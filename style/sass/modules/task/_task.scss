@@ -1,0 +1,8 @@
+.task {
+  font-size: 1.6rem;
+
+  &__name,
+  &__button {
+    font-size: inherit;
+  }
+}
