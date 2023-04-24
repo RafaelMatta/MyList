@@ -1,0 +1,21 @@
+.button {
+  &,
+  &::after,
+  &::before {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &--more {
+    width: 2rem;
+  }
+
+  &--add {
+    transition: all 0.2s ease;
+
+    &:hover {
+      scale: 1.2;
+    }
+  }
+}
