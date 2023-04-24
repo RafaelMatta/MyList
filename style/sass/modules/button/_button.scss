@@ -1,0 +1,24 @@
+.button {
+  &,
+  &::after,
+  &::before {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+
+    color: $color-dark--1;
+  }
+
+  &--more {
+    width: 2rem;
+  }
+
+  &--add {
+    transition: all 0.2s ease;
+
+    &:hover {
+      scale: 1.2;
+    }
+  }
+}
