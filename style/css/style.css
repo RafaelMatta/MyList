@@ -40,7 +40,9 @@ html {
 .button, .button::after, .button::before {
   border: none;
   background-color: transparent;
-  cursor: pointer; }
+  cursor: pointer;
+  outline: none;
+  color: #0d1224; }
 
 .button--more {
   width: 2rem; }
@@ -98,12 +100,30 @@ html {
     list-style: none; }
     .sidebar__list::-webkit-scrollbar {
       display: none; }
+  .sidebar__icon {
+    position: absolute;
+    font-size: inherit;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
   .sidebar__button {
-    padding: 1.5rem 1.5rem;
-    font-size: 2rem; }
-    .sidebar__button:hover {
+    padding: 3rem;
+    font-size: 2rem;
+    position: relative; }
+    .sidebar__button--active {
       background-color: #ffd339; }
-    .sidebar__button:active {
+    .sidebar__button::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 0;
+      background-color: #ffd339;
+      transition: all 0.3s ease; }
+    .sidebar__button:hover::before {
+      width: 100%; }
+    .sidebar__button:active::before {
       background-color: #d9d9d9; }
 
 .dropdown {

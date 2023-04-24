@@ -17,20 +17,20 @@
         <nav class="sidebar">
           <ul class="sidebar__list">
             <li class="sidebar__item">
-              <button class="button sidebar__button">
-                <i class="icon fa-solid fa-scroll fa-1x"></i>
+              <button class="button sidebar__button sidebar__button--active">
+                <i class="icon sidebar__icon fa-solid fa-scroll fa-1x"></i>
               </button>
             </li>
 
             <li class="sidebar__item">
               <button class="button sidebar__button">
-                <i class="icon fa-solid fa-scroll fa-1x"></i>
+                <i class="icon sidebar__icon fa-solid fa-scroll fa-1x"></i>
               </button>
             </li>
           </ul>
 
           <button class="button sidebar__button" id="add-list">
-            <i class="icon fa-solid fa-plus fa-1x"></i>
+            <i class="icon sidebar__icon fa-solid fa-plus fa-1x"></i>
           </button>
         </nav>
 
@@ -105,7 +105,7 @@
             <div class="checklist__finished">
               <ul class="checklist__tasks">
                 <li class="task">
-                  <div class="task__check">
+                  <div class="task__check task__check--checked">
                     <div class="checkbox task__checkbox">
                       <input
                         type="checkbox"
@@ -113,7 +113,7 @@
                         id="checkbox-input"
                       />
                       <label for="checkbox-input" class="checkbox__label">
-                        <div class="checkbox__box"></div>
+                        <div class="checkbox__box checkbox__box--checked"></div>
                       </label>
                     </div>
                   </div>

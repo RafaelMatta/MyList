@@ -22,15 +22,42 @@
     }
   }
 
-  &__button {
-    padding: 1.5rem 1.5rem;
-    font-size: 2rem;
+  &__icon {
+    position: absolute;
+    font-size: inherit;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-    &:hover {
+  &__button {
+    padding: 3rem;
+    font-size: 2rem;
+    position: relative;
+
+    &--active {
       background-color: $color-light-yellow;
     }
 
-    &:active {
+    &::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      right: 0;
+
+      height: 100%;
+      width: 0;
+
+      background-color: $color-light-yellow;
+
+      transition: all 0.3s ease;
+    }
+
+    &:hover::before {
+      width: 100%;
+    }
+
+    &:active::before {
       background-color: $color-light-gray--2;
     }
   }

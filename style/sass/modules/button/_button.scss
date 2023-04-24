@@ -5,6 +5,9 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+    outline: none;
+
+    color: $color-dark--1;
   }
 
   &--more {
