@@ -9,25 +9,14 @@
       src="https://kit.fontawesome.com/4ecf0d673d.js"
       crossorigin="anonymous"
     ></script>
+    <script defer type="module" src="js/main.js"></script>
   </head>
 
   <body>
     <div class="container container__page">
       <main class="checklist">
         <nav class="sidebar">
-          <ul class="sidebar__list">
-            <li class="sidebar__item">
-              <button class="button sidebar__button sidebar__button--active">
-                <i class="icon sidebar__icon fa-solid fa-scroll fa-1x"></i>
-              </button>
-            </li>
-
-            <li class="sidebar__item">
-              <button class="button sidebar__button">
-                <i class="icon sidebar__icon fa-solid fa-scroll fa-1x"></i>
-              </button>
-            </li>
-          </ul>
+          <ul class="sidebar__list"></ul>
 
           <button class="button sidebar__button" id="add-list">
             <i class="icon sidebar__icon fa-solid fa-plus fa-1x"></i>
@@ -38,7 +27,6 @@
           <div class="checklist__header">
             <input
               type="text"
-              value="Untitled"
               class="input input--text title title--1 checklist__name"
             />
 

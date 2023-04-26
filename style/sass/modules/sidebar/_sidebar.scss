@@ -35,6 +35,10 @@
     font-size: 2rem;
     position: relative;
 
+    background-color: transparent;
+
+    transition: all 0.3s ease;
+
     &--active {
       background-color: $color-light-yellow;
     }

@@ -109,7 +109,9 @@ html {
   .sidebar__button {
     padding: 3rem;
     font-size: 2rem;
-    position: relative; }
+    position: relative;
+    background-color: transparent;
+    transition: all 0.3s ease; }
     .sidebar__button--active {
       background-color: #ffd339; }
     .sidebar__button::before {
