@@ -1,10 +1,29 @@
 export default class Task {
-    #name = '';
-    #status = '';
+    #position;
+    #element;
+    #name;
+    #status;
 
-    constructor (name, status) {
-        this.name = name;
-        this.status = status;
+    constructor () {
+        this.#position = 0;
+        this.name = '';
+        this.status = 'todo';
+    }
+
+    get position () {
+        return this.#position;
+    }
+
+    set position (position) {
+        this.#position = position;
+    }
+
+    get element () {
+        return this.#element;
+    }
+
+    set element (element) {
+        this.#element = element;
     }
 
     get name () {

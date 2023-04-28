@@ -1,13 +1,12 @@
 export default class Checklist {
-    #idNumber;
-    #id;
     #name;
-    #tasks;
+    #todo;
+    #finished;
 
-    constructor (name) {
-        this.#idNumber = this.#generateIDNumber();
-        this.#tasks = [];
-        this.name = name;
+    constructor () {
+        this.#todo = [];
+        this.#finished = [];
+        this.name = '';
     }
 
     get name () {
@@ -16,34 +15,40 @@ export default class Checklist {
 
     set name (name) {
         this.#name = name;
-        this.#setID();
     }
 
     get todo () {
-        return this.#tasks.filter(t => t.status === 'to do');
+        return this.#todo;
     }
 
     get finished () {
-        return this.#tasks.filter(t => t.status === 'finished');
+        return this.#finished;
     }
 
-    get id () {
-        return this.#id;
+    #addTodo (task) {
+        this.#todo.push(task);
     }
-    
-    #setID () {
-        this.#id = `${this.#name}${this.#idNumber}`;
-    }
-    
-    #generateIDNumber () {
-        return '#' + `${Math.trunc(Math.random() * 10000)}`.padStart(4,0);
+
+    #addFinished (task) {
+        this.#finished.push(task);
     }
     
     addTask (task) {
-        this.#tasks.push(task);
+        if (task.status === 'todo') this.#todo.push(task);
+        else this.#finished.push(task);   
     }
-    
+
     removeTask (task) {
-        this.#tasks.splice(this.#tasks.findIndex(t => t.name === task.name), 1)
+        if (task.status === 'todo') this.#todo.splice(this.#todo.indexOf(task),1);
+        else this.#finished.splice(this.#finished.indexOf(task),1);
+    }
+
+    sortTasks () {
+        this.#todo.sort((ta , tb) => ta.position - tb.position);
+    }
+
+    searchTaskByHTMLElement () {
+        return
     }
 }
+    
