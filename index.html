@@ -36,7 +36,7 @@
               </button>
               <ul class="dropdown">
                 <li class="dropdown__item">
-                  <button class="button dropdown__button">
+                  <button class="button dropdown__button" id="remove-list">
                     <i class="icon dropdown__icon fa-solid fa-trash"></i>
                     <span class="dropdown__item-name">Delete</span>
                   </button>
@@ -48,40 +48,16 @@
           <div class="checklist__content">
             <div class="checklist__status checklist__status--1">
               <h2 class="title title--2 checklist__title">To do</h2>
-              <button class="button button--add checklist__button">
+              <button
+                class="button button--add checklist__button"
+                id="add-task"
+              >
                 <i class="icon fa-solid fa-plus fa-1x"></i>
               </button>
             </div>
 
             <div class="checklist__to-do">
-              <ul class="checklist__tasks">
-                <li class="task">
-                  <div class="task__check">
-                    <div class="checkbox task__checkbox">
-                      <input
-                        type="checkbox"
-                        class="input checkbox__input"
-                        id="checkbox-input"
-                      />
-                      <label for="checkbox-input" class="checkbox__label">
-                        <div class="checkbox__box"></div>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="task__information">
-                    <input
-                      type="text"
-                      value="Untitled"
-                      class="input input--text task__name"
-                    />
-
-                    <button class="button task__button">
-                      <i class="icon fa-solid fa-trash fa-sm"></i>
-                    </button>
-                  </div>
-                </li>
-              </ul>
+              <ul class="checklist__tasks" id="tasks-todo"></ul>
             </div>
 
             <div class="checklist__divider"></div>
@@ -91,7 +67,7 @@
             </div>
 
             <div class="checklist__finished">
-              <ul class="checklist__tasks">
+              <ul class="checklist__tasks" id="tasks-finished">
                 <li class="task">
                   <div class="task__check task__check--checked">
                     <div class="checkbox task__checkbox">
