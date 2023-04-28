@@ -1,11 +1,9 @@
 export default class Checklist {
     #name;
-    #todo;
-    #finished;
+    #tasks;
 
     constructor () {
-        this.#todo = [];
-        this.#finished = [];
+        this.#tasks = [];
         this.name = '';
     }
 
@@ -18,37 +16,30 @@ export default class Checklist {
     }
 
     get todo () {
-        return this.#todo;
-    }
-
-    get finished () {
-        return this.#finished;
-    }
-
-    #addTodo (task) {
-        this.#todo.push(task);
-    }
-
-    #addFinished (task) {
-        this.#finished.push(task);
+        return this.sortTasks(this.#tasks.filter(t => t.status === 'todo'));
     }
     
+    get finished () {
+        return this.sortTasks(this.#tasks.filter(t => t.status === 'finished'));
+    }
+
     addTask (task) {
-        if (task.status === 'todo') this.#todo.push(task);
-        else this.#finished.push(task);   
+        this.#tasks.push(task);
     }
 
-    removeTask (task) {
-        if (task.status === 'todo') this.#todo.splice(this.#todo.indexOf(task),1);
-        else this.#finished.splice(this.#finished.indexOf(task),1);
+    removeTask (element) {
+        const task = this.searchTaskByHTMLElement(element);
+        const taskIndex = this.#tasks.indexOf(task);
+        
+        this.#tasks.splice(taskIndex,1);
     }
 
-    sortTasks () {
-        this.#todo.sort((ta , tb) => ta.position - tb.position);
+    searchTaskByHTMLElement (element) {
+        return this.#tasks.find(t => t.element === element);
     }
 
-    searchTaskByHTMLElement () {
-        return
+    sortTasks(tasks) {
+        return tasks.sort((ta , tb) => ta.position - tb.position);
     }
 }
     

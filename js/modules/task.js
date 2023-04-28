@@ -4,7 +4,8 @@ export default class Task {
     #name;
     #status;
 
-    constructor () {
+    constructor (element) {
+        this.#element = element;
         this.#position = 0;
         this.name = '';
         this.status = 'todo';

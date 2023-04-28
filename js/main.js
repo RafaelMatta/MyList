@@ -1,12 +1,14 @@
 import Checklist from './modules/checklist.js';
 import Task from './modules/task.js';
 
+
+const divContent = document.querySelector('.checklist__content');
 const listSidebar = document.querySelector('.sidebar__list');
 const listTodo = document.getElementById('tasks-todo');
 const listFinished = document.getElementById('tasks-finished');
 
 const btnAddTask = document.getElementById('add-task');
-const btnAddList = document.getElementById('add-list');
+const btnAddChecklist = document.getElementById('add-list');
 const btnRemoveList = document.getElementById('remove-list');
 const inputChecklistName = document.querySelector('.checklist__name');
 
@@ -33,12 +35,17 @@ const loadChecklistName = function () {
 }
 
 const loadTasks = function () {
-    listTodo.innerHTML = '';
-    listFinished.innerHTML = '';
-    currentChecklist.sortTasks();
-    currentChecklist.todo.forEach(task => listTodo.insertAdjacentElement('beforeend', task.element));
+    listTasks(currentChecklist.todo, listTodo);
+    listTasks(currentChecklist.finished, listFinished);    
+}
 
-    currentChecklist.finished.forEach(task => listFinished.insertAdjacentElement('beforeend', task.element));
+const listTasks = function (tasks, listElement) {
+    listElement.innerHTML = '';
+    tasks.forEach(task => {
+        listElement.insertAdjacentElement('beforeend', task.element)
+        task.element.querySelector('.task__name').value = task.name;
+        console.log('a');
+    });
 }
 
 const loadChecklist = function () {
@@ -62,10 +69,6 @@ const removeChecklist = function () {
         currentChecklist = checklists[currentIndex];
 }
 
-const removeFocus = function () {
-    sidebarButtons.forEach(btn => btn.classList.remove('sidebar__button--active'));
-}
-
 const updateFocus = function () {
     if (!checklists.length) return;
     removeFocus();
@@ -74,38 +77,21 @@ const updateFocus = function () {
     .classList.add('sidebar__button--active');;
 }
 
+const removeFocus = function () {
+    sidebarButtons.forEach(btn => btn.classList.remove('sidebar__button--active'));
+}
+
 const updateSidebarList = function () {
     loadSidebarList();
     updateFocus();
     loadChecklist();
 }
 
-listSidebar.addEventListener('click', (e) => {
-    const sidebarButton = e.target.closest('.sidebar__button');
-
-    if(sidebarButton) currentChecklist = checklists[sidebarButton.dataset.index];
-
-    updateFocus();
-    loadChecklist();
-})
-
-btnAddList.addEventListener('click', () => {
-    addChecklist();
-    updateSidebarList();
-})
-
-btnRemoveList.addEventListener('click', () => {
-    removeChecklist();
-    updateSidebarList();
-})
-
-btnAddTask.addEventListener('click', () => {
-    const task = new Task();
-    const elementTask = document.createElement('li');
-
-    listTodo.insertAdjacentElement('beforeend', elementTask);
-    elementTask.classList.add('task');
-    elementTask.innerHTML = `
+const createTaskElement = function() {
+    const taskElement = document.createElement('li');
+    listTodo.insertAdjacentElement('beforeend', taskElement);
+    taskElement.classList.add('task');
+    taskElement.innerHTML = `
     <div class="task__check">
       <div class="checkbox task__checkbox">
         <input
@@ -131,31 +117,55 @@ btnAddTask.addEventListener('click', () => {
       </button>
     </div>`;
 
-    task.element = elementTask;
+    return taskElement;
+}
+
+listSidebar.addEventListener('click', (e) => {
+    const sidebarButton = e.target.closest('.sidebar__button');
+
+    if(sidebarButton) currentChecklist = checklists[sidebarButton.dataset.index];
+
+    updateFocus();
+    loadChecklist();
+})
+
+btnAddChecklist.addEventListener('click', () => {
+    addChecklist();
+    updateSidebarList();
+    document.querySelector('.checklist__name').focus();
+})
+
+btnRemoveList.addEventListener('click', () => {
+    removeChecklist();
+    updateSidebarList();
+})
+
+btnAddTask.addEventListener('click', () => {
+    const task = new Task(createTaskElement());
     task.position = listTodo.querySelectorAll('.task').length;
     currentChecklist.addTask(task);
     
-    elementTask.querySelector('.task__name').focus();
+    task.element.querySelector('.task__name').focus();
 })
 
 inputChecklistName.addEventListener('focusout', () => {
     currentChecklist.name = inputChecklistName.value;
 })
 
-listTodo.addEventListener('click', (e) => {
-    const targetTask = e.target.closest('.task');
+divContent.addEventListener('click', (e) => {
+    const task = e.target.closest('.task');
     const btnRemove = e.target.closest('#remove-task');
-            
-    if (btnRemove){
-        currentChecklist.removeTask(currentChecklist.todo
-            .find(t => t.element === targetTask));
+      
+    if (btnRemove) {
+        currentChecklist.removeTask(task);
+        loadTasks();
     }
-
-    loadTasks();
-    // const task = currentChecklist.todo.find(t => t.element === targetTask);
 
 })
 
+divContent.addEventListener('focusout', (e) => {
+    const task = currentChecklist.searchTaskByHTMLElement(e.target.closest('.task'));
+    const inputName = e.target.closest('.task__name');
 
-
-
+    if(inputName) task.name = inputName.value;
+})
