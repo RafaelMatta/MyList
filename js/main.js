@@ -1,6 +1,7 @@
 import Checklist from './modules/checklist.js';
 import Task from './modules/task.js';
 
+
 const divContent = document.querySelector('.checklist__content');
 const listSidebar = document.querySelector('.sidebar__list');
 const listTodo = document.getElementById('tasks-todo');
@@ -168,6 +169,3 @@ divContent.addEventListener('focusout', (e) => {
 
     if(inputName) task.name = inputName.value;
 })
-
-
-
