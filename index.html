@@ -9,25 +9,14 @@
       src="https://kit.fontawesome.com/4ecf0d673d.js"
       crossorigin="anonymous"
     ></script>
+    <script defer type="module" src="js/main.js"></script>
   </head>
 
   <body>
     <div class="container container__page">
       <main class="checklist">
         <nav class="sidebar">
-          <ul class="sidebar__list">
-            <li class="sidebar__item">
-              <button class="button sidebar__button sidebar__button--active">
-                <i class="icon sidebar__icon fa-solid fa-scroll fa-1x"></i>
-              </button>
-            </li>
-
-            <li class="sidebar__item">
-              <button class="button sidebar__button">
-                <i class="icon sidebar__icon fa-solid fa-scroll fa-1x"></i>
-              </button>
-            </li>
-          </ul>
+          <ul class="sidebar__list"></ul>
 
           <button class="button sidebar__button" id="add-list">
             <i class="icon sidebar__icon fa-solid fa-plus fa-1x"></i>
@@ -38,7 +27,6 @@
           <div class="checklist__header">
             <input
               type="text"
-              value="Untitled"
               class="input input--text title title--1 checklist__name"
             />
 
@@ -48,7 +36,7 @@
               </button>
               <ul class="dropdown">
                 <li class="dropdown__item">
-                  <button class="button dropdown__button">
+                  <button class="button dropdown__button" id="remove-list">
                     <i class="icon dropdown__icon fa-solid fa-trash"></i>
                     <span class="dropdown__item-name">Delete</span>
                   </button>
@@ -60,40 +48,16 @@
           <div class="checklist__content">
             <div class="checklist__status checklist__status--1">
               <h2 class="title title--2 checklist__title">To do</h2>
-              <button class="button button--add checklist__button">
+              <button
+                class="button button--add checklist__button"
+                id="add-task"
+              >
                 <i class="icon fa-solid fa-plus fa-1x"></i>
               </button>
             </div>
 
             <div class="checklist__to-do">
-              <ul class="checklist__tasks">
-                <li class="task">
-                  <div class="task__check">
-                    <div class="checkbox task__checkbox">
-                      <input
-                        type="checkbox"
-                        class="input checkbox__input"
-                        id="checkbox-input"
-                      />
-                      <label for="checkbox-input" class="checkbox__label">
-                        <div class="checkbox__box"></div>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="task__information">
-                    <input
-                      type="text"
-                      value="Untitled"
-                      class="input input--text task__name"
-                    />
-
-                    <button class="button task__button">
-                      <i class="icon fa-solid fa-trash fa-sm"></i>
-                    </button>
-                  </div>
-                </li>
-              </ul>
+              <ul class="checklist__tasks" id="tasks-todo"></ul>
             </div>
 
             <div class="checklist__divider"></div>
@@ -103,7 +67,7 @@
             </div>
 
             <div class="checklist__finished">
-              <ul class="checklist__tasks">
+              <ul class="checklist__tasks" id="tasks-finished">
                 <li class="task">
                   <div class="task__check task__check--checked">
                     <div class="checkbox task__checkbox">
