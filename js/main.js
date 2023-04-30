@@ -44,7 +44,6 @@ const listTasks = function (tasks, listElement) {
     tasks.forEach(task => {
         listElement.insertAdjacentElement('beforeend', task.element)
         task.element.querySelector('.task__name').value = task.name;
-        console.log('a');
     });
 }
 
@@ -94,13 +93,12 @@ const createTaskElement = function() {
     taskElement.innerHTML = `
     <div class="task__check">
       <div class="checkbox task__checkbox">
-        <input
-          type="checkbox"
-          class="input checkbox__input"
-          id="checkbox-input"
-        />
-        <label for="checkbox-input" class="checkbox__label">
-          <div class="checkbox__box"></div>
+        <label class="checkbox__label">
+            <input
+                type="checkbox"
+                class="input checkbox__input"
+            />
+            <div class="checkbox__box"></div>
         </label>
       </div>
     </div>
@@ -155,12 +153,17 @@ inputChecklistName.addEventListener('focusout', () => {
 divContent.addEventListener('click', (e) => {
     const task = e.target.closest('.task');
     const btnRemove = e.target.closest('#remove-task');
+    const btnCheck = e.target.closest('.checkbox__input');
       
     if (btnRemove) {
         currentChecklist.removeTask(task);
         loadTasks();
     }
 
+    if (btnCheck) {
+        currentChecklist.changeTaskStatus(task);
+        loadTasks();
+    }
 })
 
 divContent.addEventListener('focusout', (e) => {
