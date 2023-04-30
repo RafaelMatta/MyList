@@ -38,9 +38,6 @@ export default class Checklist {
         const task = this.searchTaskByHTMLElement(element);
 
         task.status = task.status === 'todo' ? 'finished' : 'todo';
-
-        task.element.querySelector('.task__check').classList.toggle('task__check--checked');
-        task.element.querySelector('.checkbox__box').classList.toggle('checkbox__box--checked');
     }
 
     changeTaskElementStatus () {}

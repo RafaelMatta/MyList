@@ -1,7 +1,6 @@
 import Checklist from './modules/checklist.js';
 import Task from './modules/task.js';
 
-
 const divContent = document.querySelector('.checklist__content');
 const listSidebar = document.querySelector('.sidebar__list');
 const listTodo = document.getElementById('tasks-todo');
@@ -161,7 +160,11 @@ divContent.addEventListener('click', (e) => {
     }
 
     if (btnCheck) {
+        const taskElement = currentChecklist.searchTaskByHTMLElement(task).element;
         currentChecklist.changeTaskStatus(task);
+        
+        taskElement.querySelector('.task__check').classList.toggle('task__check--checked');
+        taskElement.querySelector('.checkbox__box').classList.toggle('checkbox__box--checked');
         loadTasks();
     }
 })
