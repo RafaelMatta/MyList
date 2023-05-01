@@ -90,8 +90,7 @@ html {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  border-right: 5px solid #ffd339;
-  border-radius: 7px 0 0 7px; }
+  border-right: 5px solid #ffd339; }
   .sidebar__list {
     display: flex;
     flex-direction: column;
@@ -192,15 +191,16 @@ html {
   max-height: 55rem;
   height: 100%;
   width: 100%;
+  background-color: #efefef;
+  border-radius: 7px;
+  overflow: hidden;
   display: flex; }
   .checklist__list {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    background-color: #efefef;
-    border-radius: 0 7px 7px 0; }
+    width: 100%; }
   .checklist__header {
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
@@ -214,7 +214,7 @@ html {
   .checklist__options {
     position: relative; }
   .checklist__content {
-    display: grid;
+    display: none;
     grid-template-columns: 1fr auto 1fr;
     grid-template-rows: auto 1fr;
     column-gap: 4rem;
