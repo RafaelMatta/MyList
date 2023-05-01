@@ -27,11 +27,16 @@ export default class Checklist {
         this.#tasks.push(task);
     }
 
-    removeTask (element) {
-        const task = this.searchTaskByHTMLElement(element);
+    removeTask (task) {
         const taskIndex = this.#tasks.indexOf(task);
-        
+
         this.#tasks.splice(taskIndex,1);
+    }
+
+    removeTaskByElement (element) {
+        const task = this.searchTaskByHTMLElement(element);
+        
+        this.removeTask(task);
     }
 
     changeTaskStatus (element) {
@@ -39,8 +44,6 @@ export default class Checklist {
 
         task.status = task.status === 'todo' ? 'finished' : 'todo';
     }
-
-    changeTaskElementStatus () {}
 
     searchTaskByHTMLElement (element) {
         return this.#tasks.find(t => t.element === element);

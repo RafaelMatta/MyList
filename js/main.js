@@ -155,7 +155,7 @@ divContent.addEventListener('click', (e) => {
     const btnCheck = e.target.closest('.checkbox__input');
       
     if (btnRemove) {
-        currentChecklist.removeTask(task);
+        currentChecklist.removeTaskByElement(task);
         loadTasks();
     }
 
@@ -172,6 +172,11 @@ divContent.addEventListener('click', (e) => {
 divContent.addEventListener('focusout', (e) => {
     const task = currentChecklist.searchTaskByHTMLElement(e.target.closest('.task'));
     const inputName = e.target.closest('.task__name');
+    
+    if(!inputName.value) {
+        currentChecklist.removeTask(task);
+        loadTasks();
+    }
 
-    if(inputName) task.name = inputName.value;
+    if(inputName) task.name = inputName.value
 })
