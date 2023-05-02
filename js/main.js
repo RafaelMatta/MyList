@@ -199,10 +199,9 @@ divContent.addEventListener('click', (e) => {
 
     if (btnCheck) {
         const taskElement = currentChecklist.searchTaskByHTMLElement(task).element;
-        currentChecklist.changeTaskStatus(task);
 
+        currentChecklist.changeTaskStatus(task);
         changeTaskElementStatus(taskElement);
-        
         loadTasks();
     }
 })

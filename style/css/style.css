@@ -6477,6 +6477,7 @@ html {
     .checklist__create .icon {
       font-size: 15rem;
       margin-bottom: 1.5rem; }
+
   .checklist__header {
     display: none;
     justify-content: space-between;
