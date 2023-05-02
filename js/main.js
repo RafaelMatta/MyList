@@ -1,3 +1,5 @@
+'use strict';
+
 import Checklist from './modules/checklist.js';
 import Task from './modules/task.js';
 
@@ -147,9 +149,19 @@ listSidebar.addEventListener('click', (e) => {
 
 btnAddChecklist.forEach(btn => {
     btn.addEventListener('click', () => {
-        divCreate.style.display = 'none';
-        divHeader.style.display = 'flex';
-        divContent.style.display = 'grid';
+        divCreate.animate([
+            {opacity: 1 , scale: 1} , 
+            {opacity: 0, scale: 1.2}
+        ],{ 
+            duration: 200,
+            iterations: 1
+        })
+
+        setTimeout( () => {
+            divCreate.style.display = 'none';
+            divHeader.style.display = 'flex';
+            divContent.style.display = 'grid';
+        }, 200)
     
         addChecklist();
         updateSidebarList();

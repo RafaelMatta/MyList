@@ -6287,6 +6287,9 @@ html {
   background-color: transparent;
   outline: none; }
 
+.input--text {
+  color: #0d1224; }
+
 .button, .button::after, .button::before {
   border: none;
   background-color: transparent;
