@@ -21,4 +21,19 @@
       scale: 1.2;
     }
   }
+
+  &--create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-weight: 700;
+    font-size: 1.8rem;
+    transition: scale 0.3s ease;
+
+    &:hover {
+      animation: shake 1s linear forwards;
+      scale: 1.1;
+    }
+  }
 }

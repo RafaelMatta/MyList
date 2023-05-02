@@ -6,6 +6,8 @@
   }
 
   &__box {
+    @extend %fa-icon;
+    @extend .fa-solid;
     position: relative;
     cursor: pointer;
 
@@ -24,8 +26,7 @@
     &::after {
       position: absolute;
 
-      font: var(--fa-font-solid);
-      content: "\f00c";
+      content: fa-content($fa-var-check);
 
       color: $color-dark--1;
       opacity: 0;

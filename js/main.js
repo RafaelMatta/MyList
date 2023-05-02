@@ -10,7 +10,7 @@ const listTodo = document.getElementById('tasks-todo');
 const listFinished = document.getElementById('tasks-finished');
 
 const btnAddTask = document.getElementById('add-task');
-const btnAddChecklist = document.getElementById('add-list');
+const btnAddChecklist = document.querySelectorAll('#add-list');
 const btnRemoveChecklist = document.getElementById('remove-list');
 
 const inputChecklistName = document.querySelector('.checklist__name');
@@ -125,7 +125,7 @@ const disableChecklistDisplay = function () {
     if (!checklists.length) {
         divHeader.style.display = 'none';
         divContent.style.display = 'none';
-        divCreate.style.display = 'visible';
+        divCreate.style.display = 'flex';
     }
 }
 
@@ -138,14 +138,16 @@ listSidebar.addEventListener('click', (e) => {
     loadChecklist();
 })
 
-btnAddChecklist.addEventListener('click', () => {
-    divCreate.style.display = 'none';
-    divHeader.style.display = 'flex';
-    divContent.style.display = 'grid';
-
-    addChecklist();
-    updateSidebarList();
-    document.querySelector('.checklist__name').focus();
+btnAddChecklist.forEach(btn => {
+    btn.addEventListener('click', () => {
+        divCreate.style.display = 'none';
+        divHeader.style.display = 'flex';
+        divContent.style.display = 'grid';
+    
+        addChecklist();
+        updateSidebarList();
+        document.querySelector('.checklist__name').focus();
+    })
 })
 
 btnRemoveChecklist.addEventListener('click', () => {
