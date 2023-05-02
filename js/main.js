@@ -129,6 +129,13 @@ const disableChecklistDisplay = function () {
     }
 }
 
+const changeTaskElementStatus = function (taskElement) {
+    setTimeout(() => {
+        taskElement.querySelector('.task__check').classList.toggle('task__check--checked');
+        taskElement.querySelector('.checkbox__box').classList.toggle('checkbox__box--checked');
+    }, 1)
+}
+
 listSidebar.addEventListener('click', (e) => {
     const sidebarButton = e.target.closest('.sidebar__button');
 
@@ -175,15 +182,15 @@ divContent.addEventListener('click', (e) => {
       
     if (btnRemove) {
         currentChecklist.removeTaskByElement(task);
-        loadTasks();
+        setTimeout(() => { loadTasks(); }, 150);
     }
 
     if (btnCheck) {
         const taskElement = currentChecklist.searchTaskByHTMLElement(task).element;
         currentChecklist.changeTaskStatus(task);
+
+        changeTaskElementStatus(taskElement);
         
-        taskElement.querySelector('.task__check').classList.toggle('task__check--checked');
-        taskElement.querySelector('.checkbox__box').classList.toggle('checkbox__box--checked');
         loadTasks();
     }
 })
@@ -192,10 +199,12 @@ divContent.addEventListener('focusout', (e) => {
     const task = currentChecklist.searchTaskByHTMLElement(e.target.closest('.task'));
     const inputName = e.target.closest('.task__name');
     
-    if(!inputName.value) {
-        currentChecklist.removeTask(task);
-        loadTasks();
+    if(inputName) {
+        if(!inputName.value) {
+            currentChecklist.removeTask(task);
+            setTimeout(() => { loadTasks(); }, 150);
+        } else {
+            task.name = inputName.value;
+        }
     }
-
-    if(inputName) task.name = inputName.value
 })
