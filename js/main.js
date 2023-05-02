@@ -1,3 +1,5 @@
+'use strict';
+
 import Checklist from './modules/checklist.js';
 import Task from './modules/task.js';
 
@@ -10,7 +12,7 @@ const listTodo = document.getElementById('tasks-todo');
 const listFinished = document.getElementById('tasks-finished');
 
 const btnAddTask = document.getElementById('add-task');
-const btnAddChecklist = document.getElementById('add-list');
+const btnAddChecklist = document.querySelectorAll('#add-list');
 const btnRemoveChecklist = document.getElementById('remove-list');
 
 const inputChecklistName = document.querySelector('.checklist__name');
@@ -125,8 +127,15 @@ const disableChecklistDisplay = function () {
     if (!checklists.length) {
         divHeader.style.display = 'none';
         divContent.style.display = 'none';
-        divCreate.style.display = 'visible';
+        divCreate.style.display = 'flex';
     }
+}
+
+const changeTaskElementStatus = function (taskElement) {
+    setTimeout(() => {
+        taskElement.querySelector('.task__check').classList.toggle('task__check--checked');
+        taskElement.querySelector('.checkbox__box').classList.toggle('checkbox__box--checked');
+    }, 1)
 }
 
 listSidebar.addEventListener('click', (e) => {
@@ -138,14 +147,26 @@ listSidebar.addEventListener('click', (e) => {
     loadChecklist();
 })
 
-btnAddChecklist.addEventListener('click', () => {
-    divCreate.style.display = 'none';
-    divHeader.style.display = 'flex';
-    divContent.style.display = 'grid';
+btnAddChecklist.forEach(btn => {
+    btn.addEventListener('click', () => {
+        divCreate.animate([
+            {opacity: 1 , scale: 1} , 
+            {opacity: 0, scale: 1.2}
+        ],{ 
+            duration: 200,
+            iterations: 1
+        })
 
-    addChecklist();
-    updateSidebarList();
-    document.querySelector('.checklist__name').focus();
+        setTimeout( () => {
+            divCreate.style.display = 'none';
+            divHeader.style.display = 'flex';
+            divContent.style.display = 'grid';
+        }, 200)
+    
+        addChecklist();
+        updateSidebarList();
+        document.querySelector('.checklist__name').focus();
+    })
 })
 
 btnRemoveChecklist.addEventListener('click', () => {
@@ -173,15 +194,14 @@ divContent.addEventListener('click', (e) => {
       
     if (btnRemove) {
         currentChecklist.removeTaskByElement(task);
-        loadTasks();
+        setTimeout(() => { loadTasks(); }, 150);
     }
 
     if (btnCheck) {
         const taskElement = currentChecklist.searchTaskByHTMLElement(task).element;
+
         currentChecklist.changeTaskStatus(task);
-        
-        taskElement.querySelector('.task__check').classList.toggle('task__check--checked');
-        taskElement.querySelector('.checkbox__box').classList.toggle('checkbox__box--checked');
+        changeTaskElementStatus(taskElement);
         loadTasks();
     }
 })
@@ -190,10 +210,12 @@ divContent.addEventListener('focusout', (e) => {
     const task = currentChecklist.searchTaskByHTMLElement(e.target.closest('.task'));
     const inputName = e.target.closest('.task__name');
     
-    if(!inputName.value) {
-        currentChecklist.removeTask(task);
-        loadTasks();
+    if(inputName) {
+        if(!inputName.value) {
+            currentChecklist.removeTask(task);
+            setTimeout(() => { loadTasks(); }, 150);
+        } else {
+            task.name = inputName.value;
+        }
     }
-
-    if(inputName) task.name = inputName.value
 })

@@ -29,6 +29,16 @@ export default class Checklist {
 
     removeTask (task) {
         const taskIndex = this.#tasks.indexOf(task);
+        const animKeys = [
+            { opacity: 1, transform: "translateY(0px) scale(1)" },
+            { opacity: 0, transform: "translateY(50px) scale(0)" }
+        ]
+        const animOptions ={ 
+            duration: 200,
+            iterations: 1,
+        }
+        
+        task.element.animate(animKeys, animOptions);
 
         this.#tasks.splice(taskIndex,1);
     }
