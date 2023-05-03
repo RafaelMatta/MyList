@@ -8,6 +8,15 @@
 
   border-right: 5px solid $color-light-yellow;
 
+  @media screen and (max-width: $bp-medium) {
+    flex-direction: row;
+
+    border-right: none;
+    border-bottom: 5px solid $color-light-yellow;
+
+    padding: 0 1.5rem;
+  }
+
   &__list {
     display: flex;
     flex-direction: column;
@@ -15,6 +24,10 @@
 
     overflow: scroll;
     list-style: none;
+
+    @media screen and (max-width: $bp-medium) {
+      flex-direction: row;
+    }
 
     &::-webkit-scrollbar {
       display: none;
@@ -54,10 +67,22 @@
       background-color: $color-light-yellow;
 
       transition: all 0.3s ease;
+
+      @media screen and (max-width: $bp-medium) {
+        top: auto;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 0%;
+      }
     }
 
     &:hover::before {
       width: 100%;
+
+      @media screen and (max-width: $bp-medium) {
+        height: 100%;
+      }
     }
 
     &:active::before {

@@ -6280,7 +6280,8 @@ html {
   display: flex;
   align-items: center; }
   .container__page {
-    width: 100rem; }
+    max-width: 100rem;
+    width: 100%; }
 
 .input, .input::before, .input::after {
   border: none;
@@ -6334,13 +6335,15 @@ html {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    font-size: 1.6rem; }
+    font-size: 1.6rem;
+    padding: 0 1rem; }
   .task__name, .task__button {
     font-size: inherit; }
   .task__name {
     padding: 1rem 1rem;
     font-size: 1.4rem;
-    font-weight: 700; }
+    font-weight: 700;
+    width: 100%; }
   .task__button {
     padding: 1rem;
     transition: all 0.4s ease; }
@@ -6355,12 +6358,21 @@ html {
   flex-direction: column;
   gap: 1.5rem;
   border-right: 5px solid #ffd339; }
+  @media screen and (max-width: 40.625em) {
+    .sidebar {
+      flex-direction: row;
+      border-right: none;
+      border-bottom: 5px solid #ffd339;
+      padding: 0 1.5rem; } }
   .sidebar__list {
     display: flex;
     flex-direction: column;
     gap: inherit;
     overflow: scroll;
     list-style: none; }
+    @media screen and (max-width: 40.625em) {
+      .sidebar__list {
+        flex-direction: row; } }
     .sidebar__list::-webkit-scrollbar {
       display: none; }
   .sidebar__icon {
@@ -6386,8 +6398,18 @@ html {
       width: 0;
       background-color: #ffd339;
       transition: all 0.3s ease; }
+      @media screen and (max-width: 40.625em) {
+        .sidebar__button::before {
+          top: auto;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 0%; } }
     .sidebar__button:hover::before {
       width: 100%; }
+      @media screen and (max-width: 40.625em) {
+        .sidebar__button:hover::before {
+          height: 100%; } }
     .sidebar__button:active::before {
       background-color: #d9d9d9; }
 
@@ -6458,11 +6480,17 @@ html {
   border-radius: 7px;
   overflow: hidden;
   display: flex; }
+  @media screen and (max-width: 40.625em) {
+    .checklist {
+      flex-direction: column;
+      max-height: none;
+      border-radius: 0; } }
   .checklist__list {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 100%; }
+    width: 100%;
+    height: 100%; }
   .checklist__create {
     position: absolute;
     top: 0;
@@ -6495,34 +6523,47 @@ html {
     display: none;
     grid-template-columns: 1fr auto 1fr;
     grid-template-rows: auto 1fr;
+    grid-template-areas: "todo . finished" "todoTasks divider finishedTasks";
     column-gap: 4rem;
     height: 87%;
     padding: 2rem 4rem; }
+    @media screen and (max-width: 40.625em) {
+      .checklist__content {
+        overflow-y: scroll;
+        row-gap: 2rem;
+        grid-template-columns: auto;
+        grid-template-rows: auto 35rem auto auto 35rem;
+        grid-template-areas: "todo" "todoTasks" "divider" "finished" "finishedTasks";
+        padding-bottom: 1rem; }
+        .checklist__content::-webkit-scrollbar {
+          display: none; } }
   .checklist__status {
     padding-bottom: 2rem; }
     .checklist__status--1 {
-      grid-column: 1 / 2;
+      grid-area: todo;
       display: flex;
       justify-content: space-between; }
     .checklist__status--2 {
-      grid-column: 3 / -1;
-      grid-row: 1 / 2; }
+      grid-area: finished; }
   .checklist__to-do, .checklist__finished {
     overflow-y: scroll; }
     .checklist__to-do::-webkit-scrollbar, .checklist__finished::-webkit-scrollbar {
       display: none; }
   .checklist__to-do {
-    grid: 1 / 2;
-    grid-row: 2 / -1; }
+    grid-area: todoTasks; }
   .checklist__tasks {
     display: flex;
     flex-direction: column;
     gap: 1rem; }
   .checklist__divider {
-    grid-column: 2 / 3;
-    grid-row: 2 / -1;
+    grid-area: divider;
     border-left: 1px solid #d9d9d9;
     height: 100%; }
+    @media screen and (max-width: 40.625em) {
+      .checklist__divider {
+        border-top: 1px solid #d9d9d9;
+        border-left: none;
+        width: 100%;
+        height: auto; } }
   .checklist__finished {
-    grid-column: 3 / -1;
-    grid-row: 2 / -1; }
+    grid-area: finishedTasks; }
