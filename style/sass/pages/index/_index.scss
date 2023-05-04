@@ -1,20 +1,26 @@
 .checklist {
-  max-height: 55rem;
-  height: 100%;
   width: 100%;
   background-color: $color-light-gray--1;
-
   border-radius: 7px;
 
   overflow: hidden;
-
   display: flex;
+
+  @media screen and (max-width: $bp-medium) {
+    flex-direction: column;
+    border-radius: 0;
+  }
 
   &__list {
     position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 55rem;
+
+    @media screen and (max-width: $bp-medium) {
+      height: 65rem;
+    }
   }
 
   &__create {
@@ -64,28 +70,49 @@
   }
 
   &__content {
+    height: 87%;
+    padding: 2rem 4rem;
+    overflow-y: scroll;
     display: none;
     grid-template-columns: 1fr auto 1fr;
     grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "todo . finished"
+      "todoTasks divider finishedTasks";
     column-gap: 4rem;
 
-    height: 87%;
-    padding: 2rem 4rem;
+    @media screen and (max-width: $bp-medium) {
+      row-gap: 2rem;
+      height: 100%;
+      grid-template-columns: auto;
+      grid-template-rows: auto 35rem auto auto 35rem;
+      grid-template-areas:
+        "todo"
+        "todoTasks"
+        "divider"
+        "finished"
+        "finishedTasks";
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      padding-bottom: 1rem;
+    }
   }
 
   &__status {
     padding-bottom: 2rem;
 
     &--1 {
-      grid-column: 1 / 2;
+      grid-area: todo;
 
       display: flex;
       justify-content: space-between;
     }
 
     &--2 {
-      grid-column: 3 / -1;
-      grid-row: 1 / 2;
+      grid-area: finished;
     }
   }
 
@@ -99,8 +126,7 @@
   }
 
   &__to-do {
-    grid: 1 / 2;
-    grid-row: 2 / -1;
+    grid-area: todoTasks;
   }
 
   &__tasks {
@@ -111,15 +137,20 @@
   }
 
   &__divider {
-    grid-column: 2 / 3;
-    grid-row: 2 / -1;
+    grid-area: divider;
 
     border-left: 1px solid $color-light-gray--2;
     height: 100%;
+
+    @media screen and (max-width: $bp-medium) {
+      border-top: 1px solid $color-light-gray--2;
+      border-left: none;
+      width: 100%;
+      height: auto;
+    }
   }
 
   &__finished {
-    grid-column: 3 / -1;
-    grid-row: 2 / -1;
+    grid-area: finishedTasks;
   }
 }

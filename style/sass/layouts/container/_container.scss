@@ -6,6 +6,7 @@
   align-items: center;
 
   &__page {
-    width: 100rem;
+    max-width: 100rem;
+    width: 100%;
   }
 }
