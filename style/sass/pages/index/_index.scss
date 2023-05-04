@@ -17,10 +17,6 @@
     flex-direction: column;
     width: 100%;
     height: 55rem;
-
-    @media screen and (max-width: $bp-medium) {
-      height: 65rem;
-    }
   }
 
   &__create {
