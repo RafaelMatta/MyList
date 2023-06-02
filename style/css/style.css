@@ -6526,6 +6526,8 @@ html {
     grid-template-areas: "todo . finished"
  "todoTasks divider finishedTasks";
     column-gap: 4rem; }
+  .checklist__content::-webkit-scrollbar {
+    display: none; } 
     @media screen and (max-width: 40.625em) {
       .checklist__content {
         row-gap: 2rem;
@@ -6537,9 +6539,7 @@ html {
  "divider"
  "finished"
  "finishedTasks";
-        padding-bottom: 1rem; }
-        .checklist__content::-webkit-scrollbar {
-          display: none; } }
+        padding-bottom: 1rem; } }
   .checklist__status {
     padding-bottom: 2rem; }
     .checklist__status--1 {
