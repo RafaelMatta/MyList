@@ -77,6 +77,10 @@
       "todoTasks divider finishedTasks";
     column-gap: 4rem;
 
+    &::-webkit-scrollbar {
+        display: none;
+      }
+
     @media screen and (max-width: $bp-medium) {
       row-gap: 2rem;
       height: 100%;
@@ -88,10 +92,6 @@
         "divider"
         "finished"
         "finishedTasks";
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
 
       padding-bottom: 1rem;
     }
